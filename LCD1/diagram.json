@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "author": "julio Izidoro",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 19.28, "left": 61.04, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": -162.84, "left": 110.65, "attrs": {} },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -26.76, "left": 489.36, "attrs": {} }
+  ],
+  "connections": [
+    [ "lcd1:VSS", "lcd1:RW", "black", [ "v40.14", "h38.5" ] ],
+    [ "mega:GND.1", "lcd1:RW", "black", [ "h0.52", "v-60.15" ] ],
+    [ "lcd1:VDD", "lcd1:V0", "red", [ "v16.92", "h10" ] ],
+    [ "lcd1:A", "lcd1:V0", "red", [ "v16.56", "h-115.5" ] ],
+    [ "mega:5V.1", "lcd1:A", "red", [ "v-43.38", "h-146.52" ] ],
+    [ "lcd1:K", "lcd1:RW", "black", [ "v40.85", "h-105.2" ] ],
+    [ "lcd1:RS", "mega:12", "blue", [ "v27.87", "h26.68" ] ],
+    [ "lcd1:E", "mega:11", "blue", [ "v20.3", "h14.75", "v0.87" ] ],
+    [ "lcd1:D4", "mega:5", "green", [ "v44.76", "h34.32", "v1.75" ] ],
+    [ "lcd1:D5", "mega:4", "green", [ "v35.15", "h29.19", "v1.75" ] ],
+    [ "lcd1:D6", "mega:3", "green", [ "v28.16", "h32.21", "v1.75" ] ],
+    [ "lcd1:D7", "mega:2", "green", [ "v21.17", "h31.45", "v0.29" ] ],
+    [ "mega:GND.5", "sw1:3", "black", [ "v-2.5", "h80.05" ] ],
+    [ "mega:23", "sw1:2", "green", [ "v0.46", "h70.56" ] ],
+    [ "mega:5V.2", "sw1:1", "red", [ "v-0.73", "h59.28" ] ]
+  ]
+}
