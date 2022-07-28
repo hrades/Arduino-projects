@@ -12,5 +12,5 @@ Projetos desenvolvidos para arduino com ajuda da plataforma Wokwi
 ### Clock
 - Relógio funcional formato 24 horas
 - Configurar horário inicial na programação
-### See Tenperature
+### See Temperature
 - Informa a temperatura de 2 tanques diferentes e mostra através de um dispositivo LCD
