@@ -35,7 +35,7 @@ void showTime(int hours, int mins){
       lcd.print(h);
     }
 
-    for(m=mins;m<61;m++){
+    for(m=mins;m<60;m++){
       if(m<10){
         lcd.setCursor(8,1);
         lcd.print(0);
