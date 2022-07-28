@@ -7,6 +7,7 @@ void setup() {
   lcd.begin(16,2);
   lcd.clear();
   delay(500);
+  showTime(22,0); //Put the current time here
 }
 
 void loop() { 
@@ -46,7 +47,7 @@ void showTime(int hours, int mins){
         lcd.print(m);
       }
       mins = 0;
-      delay(1000); //Change to 60000 to go minute by minute
+      delay(60000);
     }
     h++;
   }
