@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "author": "Heloísa Rades",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": -179.26, "left": 30.66, "attrs": {} },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": 248.53,
+      "left": 58.44,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc2",
+      "top": 340.66,
+      "left": 54.51,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "lcd1:VSS", "mega:GND.1", "black", [ "v30.76", "h55.89" ] ],
+    [ "lcd1:VDD", "mega:5V", "red", [ "v26.67", "h-90.44", "v228.82", "h184.01" ] ],
+    [ "lcd1:V0", "mega:5V.1", "red", [ "v20.66", "h270.67" ] ],
+    [ "lcd1:RS", "mega:12", "green", [ "v12.95", "h46.27" ] ],
+    [ "lcd1:RW", "mega:GND.1", "black", [ "v42.62", "h14.31" ] ],
+    [ "lcd1:E", "mega:11", "green", [ "v9.39", "h42.79" ] ],
+    [ "lcd1:D4", "mega:5", "green", [ "v42.62", "h48.79" ] ],
+    [ "lcd1:D5", "mega:4", "green", [ "v33.13", "h51.16", "v1.19" ] ],
+    [ "lcd1:D6", "mega:3", "green", [ "v26.6", "h49.97" ] ],
+    [ "lcd1:D7", "mega:2", "green", [ "v12.95", "h53.52" ] ],
+    [ "lcd1:A", "mega:5V.2", "red", [ "v8.8", "h161.61" ] ],
+    [ "lcd1:K", "mega:GND.5", "black", [ "v-1.29", "h196.02", "v229.05" ] ],
+    [ "ntc1:VCC", "mega:GND.4", "red", [ "h0" ] ],
+    [ "ntc1:GND", "mega:GND.3", "black", [ "h29.86", "v-68.07", "h-39.55" ] ],
+    [ "ntc1:OUT", "mega:A0", "green", [ "h0" ] ],
+    [ "ntc2:GND", "ntc1:GND", "black", [ "h34.48", "v-92.13" ] ],
+    [ "ntc2:VCC", "ntc1:VCC", "red", [ "h124.68", "v-92.13" ] ],
+    [ "ntc2:OUT", "mega:A1", "green", [ "h55.89", "v-188.02", "h-27.52", "v-13.64" ] ]
+  ]
+}
