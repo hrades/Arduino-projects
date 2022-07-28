@@ -9,3 +9,6 @@ Projetos desenvolvidos para arduino com ajuda da plataforma Wokwi
 - Apresenta uma contagem regressiva e uma mensagem de feliz ano novo no final
 - Caso o botão não esteja ligado, ele apresenta uma mensagem padrão para ligá-lo
 - Há um método de contagem de 0 a 9
+### Clock
+- Relógio funcional formato 24 horas
+- Configurar horário inicial na programação
