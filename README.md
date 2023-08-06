@@ -14,3 +14,6 @@ Projetos desenvolvidos para arduino com ajuda da plataforma Wokwi
 - Configurar horário inicial na programação
 ### See Temperature
 - Informa a temperatura de 2 tanques diferentes e mostra através de um dispositivo LCD
+### Robô Sumô
+- Robô totalmente autônomo que procura e ataca os inimigos
+- Utiliza lógica de ponteiros
