@@ -14,6 +14,9 @@
 int Leds[4] = {VERMELHO, AZUL, VERDE, AMARELO};
 int Bots[4] = {BOT_VERMELHO, BOT_AZUL, BOT_VERDE, BOT_AMARELO};
 
+#define TAMANHO 100
+int sequenciaLuzes[TAMANHO];
+
 #define INDEFINIDO -1
 
 void setup() {
@@ -27,12 +30,15 @@ void setup() {
   }
   //Testa LEDs
   sequenciaInit();
-
+  sequenciaJogo();
   Serial.begin(9600);
+
 }
 
 void loop() {
-  Serial.println(checaBotao());
+  for (int i = 0; i < TAMANHO; i++) {
+    piscaLed(sequenciaLuzes[i], MEIO_SEG);
+  }
   
 }
 
@@ -46,8 +52,17 @@ int piscaLed(int LED, int tempo){
 
 void sequenciaInit(){
   for(int i=0;i<4;i++){
-    piscaLed(Leds[i], MEIO_SEG);
+    piscaLed(Leds[i], 100);
   }
+}
+
+void sequenciaJogo(){
+  int jogo = analogRead(A0);
+  randomSeed(jogo);
+  for(int i = 0; i < TAMANHO; i ++) {
+    sequenciaLuzes[i] = sorteiaCor();
+    }
+  
 }
 
 int checaBotao(){
@@ -65,4 +80,8 @@ int checaBotao(){
   }
 
   return INDEFINIDO;
+}
+
+int sorteiaCor(){
+  return random(VERMELHO, AMARELO+1);
 }
