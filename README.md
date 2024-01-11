@@ -17,3 +17,6 @@ Projetos desenvolvidos para arduino com ajuda da plataforma Wokwi
 ### Robô Sumô
 - Robô totalmente autônomo que procura e ataca os inimigos
 - Utiliza lógica de ponteiros
+### Genius
+- Jogo da memória de sequência de cores
+- Ainda em desenvolvimento
