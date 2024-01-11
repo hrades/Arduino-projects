@@ -16,7 +16,9 @@ int Bots[4] = {BOT_VERMELHO, BOT_AZUL, BOT_VERDE, BOT_AMARELO};
 
 #define TAMANHO 4
 int sequenciaLuzes[TAMANHO];
+
 int rodada = 0;
+int usuario = 0;
 
 #define INDEFINIDO -1
 
@@ -51,6 +53,7 @@ void loop() {
       Serial.println("Pronto para a proxima rodada");
       break;
     case RESPOSTA:
+      respostaUsuario();
       Serial.println("Jogador respondendo");
       break;
     case SUCESSO:
@@ -64,11 +67,15 @@ void loop() {
 }
 
 int estadoAtual(){
-  if(rodada<TAMANHO){
-    return PROXIMA_RODADA;
-  }
-  else{
-    return SUCESSO;
+  if(rodada <= TAMANHO){
+    if(usuario == rodada) {
+        return PROXIMA_RODADA;
+     }
+     else{
+        return RESPOSTA;
+    }
+  }else{
+      return SUCESSO;
   }
 }
 
@@ -121,6 +128,19 @@ int checaBotao(){
   return INDEFINIDO;
 }
 
+void novaRodada(){
+  rodada++;
+  usuario = 0;
+  if(rodada<TAMANHO){
+    piscaSequencia();
+  }
+  
+}
+
+void respostaUsuario(){
+
+  usuario++;
+}
 void novaRodada(){
   rodada++;
   piscaSequencia();
