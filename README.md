@@ -19,4 +19,4 @@ Projetos desenvolvidos para arduino com ajuda da plataforma Wokwi
 - Utiliza lógica de ponteiros
 ### Genius
 - Jogo da memória de sequência de cores
-- Ainda em desenvolvimento
+- Grave a sequência de cores exibida e aperte os botões equivalentes
