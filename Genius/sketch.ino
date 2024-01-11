@@ -14,10 +14,18 @@
 int Leds[4] = {VERMELHO, AZUL, VERDE, AMARELO};
 int Bots[4] = {BOT_VERMELHO, BOT_AZUL, BOT_VERDE, BOT_AMARELO};
 
-#define TAMANHO 100
+#define TAMANHO 4
 int sequenciaLuzes[TAMANHO];
+int rodada = 0;
 
 #define INDEFINIDO -1
+
+enum Estados{
+  PROXIMA_RODADA,
+  RESPOSTA,
+  SUCESSO,
+  FALHA
+};
 
 void setup() {
   //Inicia LEDs
@@ -32,14 +40,36 @@ void setup() {
   sequenciaInit();
   sequenciaJogo();
   Serial.begin(9600);
+  delay(UM_SEG);
 
 }
 
 void loop() {
-  for (int i = 0; i < TAMANHO; i++) {
-    piscaLed(sequenciaLuzes[i], MEIO_SEG);
+  switch (estadoAtual()) {
+    case PROXIMA_RODADA:
+      novaRodada();
+      Serial.println("Pronto para a proxima rodada");
+      break;
+    case RESPOSTA:
+      Serial.println("Jogador respondendo");
+      break;
+    case SUCESSO:
+      Serial.println("Jogo finalizado com sucesso");
+      break;
+    case FALHA:
+      Serial.println("Jogo finalizado com falha");
+      break;
   }
-  
+  delay(MEIO_SEG);
+}
+
+int estadoAtual(){
+  if(rodada<TAMANHO){
+    return PROXIMA_RODADA;
+  }
+  else{
+    return SUCESSO;
+  }
 }
 
 int piscaLed(int LED, int tempo){
@@ -56,13 +86,22 @@ void sequenciaInit(){
   }
 }
 
+int sorteiaCor(){
+  return random(VERMELHO, AMARELO+1);
+}
+
 void sequenciaJogo(){
   int jogo = analogRead(A0);
   randomSeed(jogo);
   for(int i = 0; i < TAMANHO; i ++) {
     sequenciaLuzes[i] = sorteiaCor();
-    }
-  
+  } 
+}
+
+void piscaSequencia() {
+  for (int i = 0; i < rodada; i++) {
+    piscaLed(sequenciaLuzes[i], MEIO_SEG);
+  }
 }
 
 int checaBotao(){
@@ -82,6 +121,7 @@ int checaBotao(){
   return INDEFINIDO;
 }
 
-int sorteiaCor(){
-  return random(VERMELHO, AMARELO+1);
+void novaRodada(){
+  rodada++;
+  piscaSequencia();
 }
