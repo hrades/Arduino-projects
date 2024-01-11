@@ -14,7 +14,7 @@
 int Leds[4] = {VERMELHO, AZUL, VERDE, AMARELO};
 int Bots[4] = {BOT_VERMELHO, BOT_AZUL, BOT_VERDE, BOT_AMARELO};
 
-#define TAMANHO 4
+#define TAMANHO 30
 int sequenciaLuzes[TAMANHO];
 
 int rodada = 0;
@@ -58,24 +58,31 @@ void loop() {
       break;
     case SUCESSO:
       Serial.println("Jogo finalizado com sucesso");
+      finalSucesso();
       break;
     case FALHA:
       Serial.println("Jogo finalizado com falha");
+      finalFalha();
       break;
   }
   delay(MEIO_SEG);
+
 }
 
 int estadoAtual(){
   if(rodada <= TAMANHO){
     if(usuario == rodada) {
-        return PROXIMA_RODADA;
-     }
-     else{
-        return RESPOSTA;
+      return PROXIMA_RODADA;
     }
-  }else{
-      return SUCESSO;
+    else{
+      return RESPOSTA;
+    }
+  }
+  else if(rodada == TAMANHO + 1){
+    return SUCESSO;
+  }
+  else{
+    return FALHA;
   }
 }
 
@@ -131,17 +138,41 @@ int checaBotao(){
 void novaRodada(){
   rodada++;
   usuario = 0;
-  if(rodada<TAMANHO){
+  if(rodada<=TAMANHO){
     piscaSequencia();
   }
   
 }
 
 void respostaUsuario(){
+  int resposta = checaBotao();
 
-  usuario++;
+  if(resposta == INDEFINIDO){
+    return;
+  }
+  if(resposta == sequenciaLuzes[usuario]){
+    usuario++;
+  }
+  else{
+    rodada = TAMANHO + 2;
+  } 
 }
-void novaRodada(){
-  rodada++;
-  piscaSequencia();
+
+void finalSucesso(){
+  for(int i=0;i<4;i++){
+    digitalWrite(Leds[i], HIGH);
+  }
+}
+
+void finalFalha(){
+  for(int c=0;c<3;c++){
+    for(int i=0;i<4;i++){
+      digitalWrite(Leds[i], HIGH);
+    }
+    delay(250);
+    for(int i=0;i<4;i++){
+      digitalWrite(Leds[i], LOW);
+    }
+    delay(250);
+  }
 }
